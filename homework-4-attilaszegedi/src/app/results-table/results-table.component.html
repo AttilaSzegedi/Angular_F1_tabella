@@ -1,6 +1,8 @@
 <!--{{results | json}}-->
 <!--add the array for json to see the import & input works-->
 
+{{selectedRow}}
+
 <table>
     <tr>
       <th>Futam</th>
@@ -9,7 +11,7 @@
       <th>Csapat</th>
       <th>Körök száma</th>
     </tr>
-    <tr *ngFor="let result of results; let i = index;">
+    <tr *ngFor="let result of results; let i = index; odd as isOdd" (click)="selected(i)"  [class.selected]="selectedRow === i" [ngClass]="{odd: isOdd, even: !isOdd}">
         <!-- result array use of index to made a ngFor throught the result array-->
       <td>{{result.grandPrix}}</td>
       <td>{{result.date | date:'shortDate'}}</td>

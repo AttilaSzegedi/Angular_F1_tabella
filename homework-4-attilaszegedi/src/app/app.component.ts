@@ -14,4 +14,7 @@ import { ressults } from './results';
 export class AppComponent {
   title = 'F1 Tabella- Attila Szegedi';
   results= ressults;
+
+  selectedRow: number | undefined;
+
 }

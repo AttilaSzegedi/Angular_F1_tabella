@@ -56,7 +56,7 @@ to have all result in the table need to  use the ```*ngFor``` [https://angular.i
       <th>Csapat</th>
       <th>Körök száma</th>
     </tr>
-    <tr *ngFor="let result of results; let i = index;">
+    <tr *ngFor="let result of results;">
       <td>{{result.grandPrix}}</td>
       <td>{{result.date | date:'shortdate'}}</td>
       <td>{{result.winner}}</td>
@@ -72,5 +72,38 @@ th{
     text-transform: uppercase;
     /* change the text to uppercase*/
 }
+```
+made double data connect
+
+now made the raw selection,
+first add into app new selectedRow, and give to result table as input
+app cpomponents html
+```
+
+ <app-results-table [results]="results" [selectedRow]="selectedRow">
+```
+into result table.ts
+```
+
+@Input () selectedRow?: number;
+  //* to get the input from app for row selection
+```
+now need to made the reverse direction with output
+
+-add output to ```result-table.ts``` with function to manage emit of raw changes
+ ```
+  @Output () selectedRowChange = new EventEmitter<number>();
+  //* out put to made data out from component and manage the event
+  selectRow(index:number){
+    this.selectedRowChange.emit(index);
+  }
+```
+set the html table elemnet to manage rowchange at ```result-table.html```
+```
+<tr *ngFor="let result of results; let i = index;" (click)="selectRow(i)">
+```
+this fuction add to ```app-component.html``` to use the onrow change
+```
+ <app-results-table [results]="results" [selectRow]="selectRow" (selectRowChange)="onRowChange($event)"></app-results-table>
 ```
 

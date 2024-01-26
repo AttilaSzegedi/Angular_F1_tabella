@@ -1,13 +1,18 @@
 <h1>{{title}}</h1>
-
+{{selectedRow}}
 <div class="container">
     <div class="header">
       <img src="https://www.formula1.com/content/dam/fom-website/manual/Trademarks/f1-red-800px.png">
       <div class="text">EREDMÉNYEK</div>
     </div>
     <div class="table">
-      <app-results-table [results]="results" ></app-results-table>
-      <!--add the restults Array as input data for the componenes-->
+      <app-results-table [results]="results" [(selectedRow)]="selectedRow"></app-results-table>
+      <!--add the restults Array as input data for the componenes with 
+      [results]="results"
+      and raw selectoon give with 
+      [selectRow]="selectRow"
+      --> 
     </div>
   
-  </div>
+
+</div>
